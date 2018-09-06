@@ -1,0 +1,141 @@
+{
+	"WP Customizer Panel": {
+		"prefix": "wpCustomizerAddPanel",
+		"body": [
+			"// Panel: Name.\r",
+			"\\$wp_customize->add_panel( 'prefix_panel_id', array(\r",
+			"\t'priority'       => 160,\r",
+			"\t'title'          => __( 'Panel Title', 'TEXT_DOMAIN' ),\r",
+			"\t'description'    => __( 'Panle Description.', 'TEXT_DOMAIN' ),\r",
+			"\t'capability'     => 'edit_theme_options',\r",
+			"\t'active_callback'=> '', // is_front_page\r",
+			"\t'theme_supports' => '',\r",
+			") );"
+		],
+		"description": "WordPress Customer Panel"
+	},
+	"WP Customize Add Setting": {
+		"prefix": "wpCustomizerAddSetting",
+		"body": [
+			"// Setting: Name.",
+			"\\$wp_customize->add_setting( 'prefix_id', array(",
+			"\t'type'                 => 'theme_modoption',",
+			"\t'default'              => 'default',",
+			"\t'transport'            => 'refreshpostMessage', // Options: refresh or postMessage.",
+			"\t'capability'           => 'edit_theme_options',",
+			"\t'sanitize_callback'    => '', // esc_attr, esc_textarea, absint, esc_url_raw, sanitize_hex_color, wp_strip_all_tags, wp_filter_nohtml_kses ",
+			"\t'sanitize_js_callback' => '', // Basically to_json.",
+			"\t'theme_supports' \t\t=> '', // Optional. This can be used to hide a setting if the theme lacks support for a specific feature (using add_theme_support).",
+			") );"
+		],
+		"description": "Add Customizer Setting"
+	},
+	"WP Customize Add Section": {
+		"prefix": "wpCustomizerAddSection",
+		"body": [
+			"// Section: Name.\r",
+			"\\$wp_customize->add_section( 'prefix_section_id', array(\r",
+			"\t'priority'       => 160,\r",
+			"\t'panel'          => 'prefix_panel_id',\r",
+			"\t'title'          => __( 'Section Title', 'TEXT_DOMAIN' ),\r",
+			"\t'description'    => __( 'Section Description.', 'TEXT_DOMAIN' ),\r",
+			"\t'capability'     => 'edit_theme_options',\r",
+			"\t'active_callback'=> '', // is_front_page\r",
+			"\t'theme_supports' => '',\r",
+			") );"
+		],
+		"description": "WP Customize Add Section"
+	},
+	"WP Customize Add Control Basic": {
+		"prefix": "wpCustomizerAddControlBasic",
+		"body": [
+			"// Control: Name.\r",
+			"\\$wp_customize->add_control( 'prefix_id', array(\r",
+			"\t'label'       => __( 'Label', 'TEXT_DOMAIN' ),\r",
+			"\t'description' => __( 'Description', 'TEXT_DOMAIN' ),\r",
+			"\t'section'     => 'prefix_section_id',\r",
+			"\t'type'        => 'text', // text (default | variations email/url/number/hidden/date), textarea, checkbox, radio/select (requires choices array below), dropdown-pages\r",
+			"\t'choices'  => array(\r",
+			"\t\t'enable'  => 'Enable',\r",
+			"\t\t'disable' => 'Disable',\r",
+			"\t),\r",
+			"\t'settings'    => 'prefix_id',\r",
+			"\t'active_callback' => 'is_front_page',\r",
+			") );\r",
+			""
+		],
+		"description": "WP Customize Add Control Basic"
+	},
+	"WP Customize Add Control Image": {
+		"prefix": "wpCustomizerAddControlImage",
+		"body": [
+			"// Control: Name.\r",
+			"$wp_customize->add_control( new WP_Customize_Image_Control(\r",
+			"\\$wp_customize,\r",
+			"\t'prefix_id',\r",
+			"\tarray(\r",
+			"\t\t'label'      => __( 'Upload an image', 'TEXT_DOMAIN' ),\r",
+			"\t\t'section'    => 'prefix_section_id',\r",
+			"\t\t'settings'   => 'prefix_id',\r",
+			"\t\t'context'    => 'your_setting_context'\r",
+			"\t)\r",
+			") );"
+		],
+		"description": "WP Customize Add Control Image"
+	},
+	"WP Customize Add Control Upload": {
+		"prefix": "wpCustomizerAddControlUpload",
+		"body": [
+			"// Control: Name.\r",
+			"\\$wp_customize->add_control( new WP_Customize_Upload_Control(\r",
+			"\\$wp_customize,\r",
+			"\t'prefix_id',\r",
+			"\tarray(\r",
+			"\t\t'label'      => __( 'Upload!', 'TEXT_DOMAIN' ),\r",
+			"\t\t'section'    => 'prefix_section_id',\r",
+			"\t\t'settings'   => 'prefix_id',\r",
+			"\t)\r",
+			") );"
+		],
+		"description": "WP Customize Add Control Upload"
+	},
+	"WP Customize Add Control Color": {
+		"prefix": "wpCustomizerAddControlColor",
+		"body": [
+			"// Control: Name.\r",
+			"\\$wp_customize->add_control( new WP_Customize_Color_Control(\r",
+			"\t$wp_customize,\r",
+			"\t'prefix_id',\r",
+			"\tarray(\r",
+			"\t\t'label'      => __( 'Color Picker!', 'TEXT_DOMAIN' ),\r",
+			"\t\t'section'    => 'prefix_section_id',\r",
+			"\t\t'settings'   => 'prefix_id',\r",
+			"\t)\r",
+			") );"
+		],
+		"description": "WP Customize Add Control Color"
+	},
+	"WP Customize Register Function": {
+		"prefix": "wpCustomizerRegisterFunction",
+		"body": [
+			"// Customize function.\r",
+			"if ( ! function_exists( 'PREFIX_customize_name_panel_section' ) ) {\r",
+			"\t// Customize Register action.\r",
+			"\tadd_action( 'customize_register', 'PREFIX_customize_name_panel_section' );\r",
+			"\r",
+			"\t/**\r",
+			"\t * Customize: Panel.\r",
+			"\t *\r",
+			"\t * Customize function.\r",
+			"\t *\r",
+			"\t * @param  object WP_Customize  Instance of the WP_Customize_Manager class.\r",
+			"\t * @since  1.0.0\r",
+			"\t */\r",
+			"\tfunction PREFIX_customize_name_panel_section( $wp_customize ) {\r",
+			"\t\t\r",
+			"\t}\r",
+			"}"
+		],
+		"description": "WP Customize Register Function"
+	}
+}
